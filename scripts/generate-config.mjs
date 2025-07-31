@@ -45,4 +45,5 @@ collections:
 `;
 
 fs.writeFileSync('public/config.yml', config.trim() + '\n');
+fs.writeFileSync('public/admin/config.yml', config.trim() + '\n');
 console.log('✅ Generated config.yml');
