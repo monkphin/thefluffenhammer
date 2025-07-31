@@ -1,0 +1,30 @@
+backend:
+  name: github
+  repo: monkphin/thefluffenhammer
+  branch: main
+  base_url: "https://thefluffenhammer-ac3ebf140199.herokuapp.com"
+  auth_endpoint: "/api/auth"
+  app_id: "Ov23liyefRJqUwT3Kes7"
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: "dlmbpbtfx"
+    api_key: "921254886299189"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    folder: "src/content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
