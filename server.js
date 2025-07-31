@@ -61,7 +61,16 @@ app.get("/api/auth", async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    return res.json({ token: jwtToken });
+    return res.send(`
+      <script>
+        window.opener.postMessage(
+          { token: "${jwtToken}", provider: "github" },
+          window.location.origin
+        );
+        window.close();
+      </script>
+    `);
+    
   } catch (err) {
     return res.status(500).json({ error: "Internal Server Error", details: err.message });
   }
