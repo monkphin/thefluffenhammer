@@ -1,0 +1,24 @@
+# public/admin/config.yml
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+media_library:
+  name: "cloudinary"
+  config:
+    cloud_name: "your-cloud-name"
+    api_key: "your-api-key"
