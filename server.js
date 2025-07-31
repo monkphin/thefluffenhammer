@@ -65,7 +65,7 @@ app.get("/api/auth", async (req, res) => {
       <script>
         window.opener.postMessage(
           { token: "${jwtToken}", provider: "github" },
-          window.location.origin
+          "*"
         );
         window.close();
       </script>
