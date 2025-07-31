@@ -22,8 +22,15 @@ app.use(express.static(path.join(__dirname, "dist")));
 
 app.get("/api/auth", async (req, res) => {
   const code = req.query.code;
-  if (!code) return res.status(400).json({ error: "Missing code parameter" });
 
+  // 👇 If no code, this is the login START — redirect to GitHub
+  if (!code) {
+    const redirectUri = `${process.env.BASE_URL}/api/auth`;
+    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=repo`;
+    return res.redirect(githubAuthUrl);
+  }
+
+  // 👇 Otherwise, continue with your existing token exchange logic
   try {
     const tokenRes = await fetch("https://github.com/login/oauth/access_token", {
       method: "POST",
