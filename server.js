@@ -64,13 +64,14 @@ app.get("/api/auth", async (req, res) => {
     return res.send(`
       <script>
         window.opener.postMessage(
-          { token: "${jwtToken}", provider: "github" },
+          { token: "${tokenData.access_token}", provider: "github" },
           "*"
         );
         window.close();
       </script>
     `);
     
+
   } catch (err) {
     return res.status(500).json({ error: "Internal Server Error", details: err.message });
   }
