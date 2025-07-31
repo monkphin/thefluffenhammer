@@ -18,7 +18,6 @@ backend:
   branch: main
   base_url: "${process.env.BASE_URL}"
   auth_endpoint: "/api/auth"
-  app_id: "${process.env.GITHUB_APP_ID}"
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
