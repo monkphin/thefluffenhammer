@@ -15,7 +15,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "supersecretshhh";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const CLIENT_ID = process.env.GITHUB_CLIENT_ID;
+const CLIENT_ID = process.env.GITHUB_APP_ID;
 const CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 
 app.use(express.static(path.join(__dirname, "dist")));
