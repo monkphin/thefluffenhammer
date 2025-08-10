@@ -7,7 +7,7 @@ import { Buffer } from "node:buffer";
 import { Readable } from "node:stream";
 import { exec } from "node:child_process";
 
-const requested = process.env.GHOST_VERSION || "^6";
+const requested = process.env.GHOST_VERSION || "5.94.0";
 const registryUrl = `https://registry.npmjs.com/ghost/${encodeURIComponent(requested)}`;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ghostInstallDir = path.join(__dirname, "..", "ghost");
