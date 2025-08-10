@@ -19,9 +19,9 @@
     },
     "homepage": "https://github.com/thelovekesh/ghost-v5-on-heroku#readme",
     "dependencies": {
+        "ghost-storage-cloudinary": "^3.0.0",
         "casper": "github:TryGhost/Casper#main",
         "ghost-storage-adapter-s3": "^2.8.0",
-        "ghost-storage-cloudinary": "^1.1.6",
         "lyra": "github:TryGhost/lyra#main",
         "mysql2": "^3.14.3"
     },
@@ -31,6 +31,6 @@
     "scripts": {
         "start": "node ghost/index.js",
         "preinstall": "yarn config set ignore-engines true",
-        "postinstall": "node bin/install-ghost.mjs && yarn install --cwd ghost && bash bin/aws-s3.sh && bash bin/themes.sh"
+        "postinstall": "node bin/install-ghost.mjs && yarn install --cwd ghost && bash bin/aws-s3.sh && bash bin/themes.sh && mkdir -p ghost/content/adapters && cp -R node_modules/ghost-storage-cloudinary ghost/content/adapters/cloudinary"
     }
 }
