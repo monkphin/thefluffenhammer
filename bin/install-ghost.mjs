@@ -7,7 +7,8 @@ import { Buffer } from "node:buffer";
 import { Readable } from "node:stream";
 import { exec } from "node:child_process";
 
-const registryUrl = "https://registry.npmjs.com/ghost/latest";
+const requested = process.env.GHOST_VERSION || "^6";
+const registryUrl = `https://registry.npmjs.com/ghost/${encodeURIComponent(requested)}`;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ghostInstallDir = path.join(__dirname, "..", "ghost");
 const res = await fetch(registryUrl);
@@ -21,9 +22,10 @@ if (!dist) {
 const { tarball, shasum } = dist;
 const tarballRes = await fetch(tarball);
 const tarballBuffer = await tarballRes.arrayBuffer();
-const hash = crypto.hash("sha1", Buffer.from(tarballBuffer));
+const hash = crypto.createHash("sha1").update(Buffer.from(tarballBuffer)).digest("hex");
 
-if (hash.toString("hex") !== shasum) {
+
+if (hash !== shasum) {
     throw new Error("Integrity check failed");
 }
 
