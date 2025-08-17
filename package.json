@@ -1,34 +1,34 @@
 {
-    "name": "ghost-v5-on-heroku",
-    "version": "5.94.0",
-    "description": "Deploy latest ghost v5 on Heroku",
-    "main": "ghost/index.js",
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/thelovekesh/ghost-v5-on-heroku.git"
-    },
-    "keywords": ["ghost", "ghost v5", "heroku"],
-    "author": "thelovekesh <hi@thelovekesh.com>",
-    "license": "MIT",
-    "bugs": { "url": "https://github.com/thelovekesh/ghost-v5-on-heroku/issues" },
-    "homepage": "https://github.com/thelovekesh/ghost-v5-on-heroku#readme",
-  
-    "dependencies": {
-      "ghost-storage-cloudinary": "^3.0.0",
-      "ghost-storage-adapter-s3": "^2.8.0",
-      "mysql2": "^3.14.3"
-    },
-    "devDependencies": {
-      "tar": "^7.4.3"
-    },
-  
-    "scripts": {
-      "start": "node ghost/index.js",
-      "preinstall": "yarn config set ignore-engines true",
-  
-      "postinstall": "node bin/install-ghost.mjs && yarn install --cwd ghost && bash bin/aws-s3.sh",
-  
-      "heroku-postbuild": "mkdir -p content/adapters && rm -rf content/adapters/cloudinary && cp -R node_modules/ghost-storage-cloudinary content/adapters/cloudinary && mkdir -p /tmp/casper && curl -L -o /tmp/casper.tgz https://github.com/TryGhost/Casper/archive/refs/tags/5.8.1.tar.gz && tar -xzf /tmp/casper.tgz -C /tmp/casper && rm -rf content/themes/casper && mkdir -p content/themes && mv /tmp/casper/Casper-5.8.1 content/themes/casper"
-    }
-  }
-  
+"name": "ghost-v5-on-heroku",
+"version": "5.94.0",
+"description": "Deploy latest ghost v5 on Heroku",
+"main": "ghost/index.js",
+"repository": {
+    "type": "git",
+    "url": "git+https://github.com/thelovekesh/ghost-v5-on-heroku.git"
+},
+"keywords": ["ghost", "ghost v5", "heroku"],
+"author": "thelovekesh <hi@thelovekesh.com>",
+"license": "MIT",
+"bugs": { "url": "https://github.com/thelovekesh/ghost-v5-on-heroku/issues" },
+"homepage": "https://github.com/thelovekesh/ghost-v5-on-heroku#readme",
+
+"dependencies": {
+    "ghost-storage-cloudinary": "^3.0.0",
+    "ghost-storage-adapter-s3": "^2.8.0",
+    "mysql2": "^3.14.3"
+},
+"devDependencies": {
+    "tar": "^7.4.3"
+},
+"scripts": {
+    "start": "node ghost/index.js",
+    "preinstall": "yarn config set ignore-engines true",
+    "postinstall": "node bin/install-ghost.mjs && yarn install --cwd ghost && bash bin/aws-s3.sh",
+    "heroku-postbuild": "set -e && mkdir -p content/adapters && rm -rf content/adapters/cloudinary && cp -R node_modules/ghost-storage-cloudinary content/adapters/cloudinary && mkdir -p /tmp/casper && curl -fsSL https://codeload.github.com/TryGhost/Casper/tar.gz/refs/tags/5.8.1 -o /tmp/casper.tgz && tar -xzf /tmp/casper.tgz -C /tmp/casper && rm -rf content/themes/casper && mkdir -p content/themes && mv /tmp/casper/Casper-5.8.1 content/themes/casper"
+},
+"engines": {
+    "node": "18.x",
+    "yarn": "1.x"
+}
+}
