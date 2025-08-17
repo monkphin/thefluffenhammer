@@ -3,5 +3,4 @@ config.production.json
 ghost
 ghost
 content/adapters/storage
-content/themes/casper
 content/themes/lyra
