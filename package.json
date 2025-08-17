@@ -26,7 +26,7 @@
     "start": "node ghost/index.js",
     "preinstall": "yarn config set ignore-engines true",
     "postinstall": "node bin/install-ghost.mjs && yarn install --cwd ghost && bash bin/aws-s3.sh",
-    "heroku-postbuild": "mkdir -p content/adapters && rm -rf content/adapters/cloudinary && cp -R node_modules/ghost-storage-cloudinary content/adapters/cloudinary"
+    "heroku-postbuild": "mkdir -p content/adapters/storage && mv node_modules/ghost-storage-cloudinary content/adapters/storage/"
 },
 "engines": { "node": "18.x", "yarn": "1.x" }
 }
