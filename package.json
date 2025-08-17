@@ -7,23 +7,17 @@
         "type": "git",
         "url": "git+https://github.com/thelovekesh/ghost-v5-on-heroku.git"
     },
-    "keywords": [
-        "ghost",
-        "ghost v5",
-        "heroku"
-    ],
+
+    "keywords": ["ghost", "ghost v5", "heroku"],
     "author": "thelovekesh <hi@thelovekesh.com>",
     "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/thelovekesh/ghost-v5-on-heroku/issues"
-    },
+    "bugs": { "url": "https://github.com/thelovekesh/ghost-v5-on-heroku/issues" },
     "homepage": "https://github.com/thelovekesh/ghost-v5-on-heroku#readme",
+  
     "dependencies": {
         "ghost-storage-cloudinary": "^3.0.0",
         "ghost-storage-adapter-s3": "^2.8.0",
         "mysql2": "^3.14.3",
-        "casper": "https://github.com/TryGhost/Casper.git#main",
-        "lyra": "https://github.com/TryGhost/Lyra.git#main"
     },
     "devDependencies": {
         "tar": "^7.4.3"
@@ -31,6 +25,6 @@
     "scripts": {
         "start": "node ghost/index.js",
         "preinstall": "yarn config set ignore-engines true",
-        "postinstall": "node bin/install-ghost.mjs && yarn install --cwd ghost && bash bin/aws-s3.sh && bash bin/themes.sh && mkdir -p ghost/content/adapters && cp -R node_modules/ghost-storage-cloudinary ghost/content/adapters/cloudinary"
+        "postinstall": "node bin/install-ghost.mjs && yarn install --cwd ghost && bash bin/aws-s3.sh && mkdir -p content/adapters && rm -rf content/adapters/cloudinary && cp -R node_modules/ghost-storage-cloudinary content/adapters/cloudinary"
     }
 }
