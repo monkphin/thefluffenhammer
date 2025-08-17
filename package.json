@@ -20,10 +20,10 @@
     "homepage": "https://github.com/thelovekesh/ghost-v5-on-heroku#readme",
     "dependencies": {
         "ghost-storage-cloudinary": "^3.0.0",
-        "casper": "github:TryGhost/Casper#main",
         "ghost-storage-adapter-s3": "^2.8.0",
-        "lyra": "github:TryGhost/lyra#main",
-        "mysql2": "^3.14.3"
+        "mysql2": "^3.14.3",
+        "casper": "https://github.com/TryGhost/Casper.git#main",
+        "lyra": "https://github.com/TryGhost/Lyra.git#main"
     },
     "devDependencies": {
         "tar": "^7.4.3"
